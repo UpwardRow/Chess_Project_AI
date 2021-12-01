@@ -1,3 +1,5 @@
+package chess;
+
 public class Square{
   public int xCoor;
   public int yCoor;

@@ -1,3 +1,5 @@
+package chess;
+
 class Move{
   Square start;
   Square landing;

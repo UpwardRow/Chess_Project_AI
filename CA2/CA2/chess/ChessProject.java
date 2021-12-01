@@ -1,3 +1,5 @@
+package chess;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Stack;
@@ -65,62 +67,62 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
 
         // Setting up the Initial Chess board.
         for(int i=8;i < 16; i++){
-          pieces = new JLabel( new ImageIcon("WhitePawn.png") );
+          pieces = new JLabel( new ImageIcon("chess/WhitePawn.png") );
           panels = (JPanel)chessBoard.getComponent(i);
           panels.add(pieces);
         }
 
-		pieces = new JLabel( new ImageIcon("WhiteRook.png") );
+		pieces = new JLabel( new ImageIcon("chess/WhiteRook.png") );
 		panels = (JPanel)chessBoard.getComponent(0);
 	    panels.add(pieces);
-		pieces = new JLabel( new ImageIcon("WhiteKnight.png") );
+		pieces = new JLabel( new ImageIcon("chess/WhiteKnight.png") );
 		panels = (JPanel)chessBoard.getComponent(1);
 	    panels.add(pieces);
-		pieces = new JLabel( new ImageIcon("WhiteKnight.png") );
+		pieces = new JLabel( new ImageIcon("chess/WhiteKnight.png") );
 		panels = (JPanel)chessBoard.getComponent(6);
 	    panels.add(pieces);
-		pieces = new JLabel( new ImageIcon("WhiteBishop.png") );
+		pieces = new JLabel( new ImageIcon("chess/WhiteBishop.png") );
 		panels = (JPanel)chessBoard.getComponent(2);
 	    panels.add(pieces);
-		pieces = new JLabel( new ImageIcon("WhiteBishop.png") );
+		pieces = new JLabel( new ImageIcon("chess/WhiteBishop.png") );
 		panels = (JPanel)chessBoard.getComponent(5);
 	    panels.add(pieces);
-		pieces = new JLabel( new ImageIcon("WhiteKing.png") );
+		pieces = new JLabel( new ImageIcon("chess/WhiteKing.png") );
 		panels = (JPanel)chessBoard.getComponent(3);
 	    panels.add(pieces);
-		pieces = new JLabel( new ImageIcon("WhiteQueen.png") );
+		pieces = new JLabel( new ImageIcon("chess/WhiteQueen.png") );
 		panels = (JPanel)chessBoard.getComponent(4);
 	    panels.add(pieces);
-		pieces = new JLabel( new ImageIcon("WhiteRook.png") );
+		pieces = new JLabel( new ImageIcon("chess/WhiteRook.png") );
 		panels = (JPanel)chessBoard.getComponent(7);
 	    panels.add(pieces);
 		for(int i=48;i < 56; i++){
-       		pieces = new JLabel( new ImageIcon("BlackPawn.png") );
+       		pieces = new JLabel( new ImageIcon("chess/BlackPawn.png") );
 			panels = (JPanel)chessBoard.getComponent(i);
 	        panels.add(pieces);
 		}
-		pieces = new JLabel( new ImageIcon("BlackRook.png") );
+		pieces = new JLabel( new ImageIcon("chess/BlackRook.png") );
 		panels = (JPanel)chessBoard.getComponent(56);
 	    panels.add(pieces);
-		pieces = new JLabel( new ImageIcon("BlackKnight.png") );
+		pieces = new JLabel( new ImageIcon("chess/BlackKnight.png") );
 		panels = (JPanel)chessBoard.getComponent(57);
 	    panels.add(pieces);
-		pieces = new JLabel( new ImageIcon("BlackKnight.png") );
+		pieces = new JLabel( new ImageIcon("chess/BlackKnight.png") );
 		panels = (JPanel)chessBoard.getComponent(62);
 	    panels.add(pieces);
-		pieces = new JLabel( new ImageIcon("BlackBishop.png") );
+		pieces = new JLabel( new ImageIcon("chess/BlackBishop.png") );
 		panels = (JPanel)chessBoard.getComponent(58);
 	    panels.add(pieces);
-		pieces = new JLabel( new ImageIcon("BlackBishop.png") );
+		pieces = new JLabel( new ImageIcon("chess/BlackBishop.png") );
 		panels = (JPanel)chessBoard.getComponent(61);
 	    panels.add(pieces);
-		  pieces = new JLabel( new ImageIcon("BlackKing.png") );
+		  pieces = new JLabel( new ImageIcon("chess/BlackKing.png") );
 		  panels = (JPanel)chessBoard.getComponent(59);
 	    panels.add(pieces);
-		  pieces = new JLabel( new ImageIcon("BlackQueen.png") );
+		  pieces = new JLabel( new ImageIcon("chess/BlackQueen.png") );
 		  panels = (JPanel)chessBoard.getComponent(60);
 	    panels.add(pieces);
-		  pieces = new JLabel( new ImageIcon("BlackRook.png") );
+		  pieces = new JLabel( new ImageIcon("chess/BlackRook.png") );
 		  panels = (JPanel)chessBoard.getComponent(63);
 	    panels.add(pieces);
       moveCounter =0;
@@ -250,9 +252,10 @@ private Stack getKingSquares(int x, int y, String piece){
 
       This process is followed again for the other temporary squares created.
 
-      After we check for all possoble squares on this column, we repeat the process for the other columns as identified above
+      After we check for all possible squares on this column, we repeat the process for the other columns as identified above
       in the grid.
     */
+
     Square tmp = new Square(tmpx1, y, piece);
     Square tmp1 = new Square(tmpx1, tmpy1, piece);
     Square tmp2 = new Square(tmpx1, tmpy2, piece);
@@ -742,7 +745,7 @@ private void getLandingSquares(Stack found){
   Stack squares = new Stack();
   while(!found.empty()){
     tmp = (Move)found.pop();
-    landing = (Square)tmp.getLanding();
+    landing = tmp.getLanding();
     squares.push(landing);
   }
   colorSquares(squares);
@@ -1705,7 +1708,7 @@ private void printStack(Stack input){
 				if (c instanceof JLabel){
 	        Container parent = c.getParent();
           parent.remove(0);
-					pieces = new JLabel( new ImageIcon("BlackQueen.png") );
+					pieces = new JLabel( new ImageIcon("chess/BlackQueen.png") );
 					parent = (JPanel)chessBoard.getComponent(location);
 			    parent.add(pieces);
 				}
@@ -1719,13 +1722,13 @@ private void printStack(Stack input){
 				if (c instanceof JLabel){
           Container parent = c.getParent();
           parent.remove(0);
-					pieces = new JLabel( new ImageIcon("WhiteQueen.png") );
+					pieces = new JLabel( new ImageIcon("chess/WhiteQueen.png") );
 					parent = (JPanel)chessBoard.getComponent(location);
           parent.add(pieces);
 				}
 				else{
 					Container parent = (Container)c;
-          pieces = new JLabel( new ImageIcon("WhiteQueen.png") );
+          pieces = new JLabel( new ImageIcon("chess/WhiteQueen.png") );
 					parent = (JPanel)chessBoard.getComponent(location);
           parent.add(pieces);
 				}

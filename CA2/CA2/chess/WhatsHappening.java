@@ -20,14 +20,14 @@
 
 */
 
-int landingX = (e.getX()/75);
-int landingY  = (e.getY()/75);
-int xMovement = Math.abs((e.getX()/75)-startX);
-int yMovement = Math.abs((e.getY()/75)-startY);
-System.out.println("----------------------------------------------");
-System.out.println("The piece that is being moved is : "+pieceName);
-System.out.println("The starting coordinates are : "+"( "+startX+","+startY+")");
-System.out.println("The xMovement is : "+xMovement);
-System.out.println("The yMovement is : "+yMovement);
-System.out.println("The landing coordinates are : "+"( "+landingX+","+landingY+")");
-System.out.println("----------------------------------------------");
+//int landingX = (e.getX()/75);
+//int landingY  = (e.getY()/75);
+//int xMovement = Math.abs((e.getX()/75)-startX);
+//int yMovement = Math.abs((e.getY()/75)-startY);
+//System.out.println("----------------------------------------------");
+//System.out.println("The piece that is being moved is : "+pieceName);
+//System.out.println("The starting coordinates are : "+"( "+startX+","+startY+")");
+//System.out.println("The xMovement is : "+xMovement);
+//System.out.println("The yMovement is : "+yMovement);
+//System.out.println("The landing coordinates are : "+"( "+landingX+","+landingY+")");
+//System.out.println("----------------------------------------------");
