@@ -1,16 +1,12 @@
 package chess;
 
 class Move{
-  Square start;
-  Square landing;
+  public Square start;
+  public Square landing;
 
   public Move(Square x, Square y){
     start = x;
     landing = y;
-  }
-
-  public Move(){
-    
   }
 
   public Square getStart(){

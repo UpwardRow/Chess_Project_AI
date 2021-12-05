@@ -1,9 +1,9 @@
 package chess;
 
 public class Square{
-  public int xCoor;
-  public int yCoor;
-  public String pieceName;
+  int xCoor;
+  int yCoor;
+  String pieceName;
 
   public Square(int x, int y, String name){
     xCoor = x;

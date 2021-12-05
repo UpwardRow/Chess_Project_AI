@@ -9,6 +9,76 @@ public class  AIAgent{
     rand = new Random();
   }
 
+  public int pieceScoreCalculations(String pieceName){
+    int pieceScoreValue = 0;
+    if (pieceName.contains("Pawn")){
+      pieceScoreValue = 1;
+    }else if (pieceName.contains("Knight") || (pieceName.contains("Bishop"))){
+      pieceScoreValue = 3;
+    }else if (pieceName.contains("Rook")){
+      pieceScoreValue = 5;
+    }else if (pieceName.contains("Queen")){
+      pieceScoreValue = 9;
+    }else if (pieceName.contains("King")){
+      pieceScoreValue = 20;
+    }
+    return pieceScoreValue;
+  }
+
+  public int squareScoreCalculations(Square squareGiven){
+    int squareScoreValue = 0;
+
+    if (squareGiven.getXC() == 0 && squareGiven.getYC() == 0 ||
+            squareGiven.getXC() == 7 && squareGiven.getYC() == 0 ||
+            squareGiven.getXC() == 0 && squareGiven.getYC() == 7 ||
+            squareGiven.getXC() == 7 && squareGiven.getYC() == 7){
+
+      squareScoreValue = 5;
+
+    }else if(squareGiven.getXC() == 1 && squareGiven.getYC() == 0 ||
+            squareGiven.getXC() == 6 && squareGiven.getYC() == 0 ||
+            squareGiven.getXC() == 0 && squareGiven.getYC() == 1 ||
+            squareGiven.getXC() == 7 && squareGiven.getYC() == 1 ||
+            squareGiven.getXC() == 0 && squareGiven.getYC() == 6 ||
+            squareGiven.getXC() == 7 && squareGiven.getYC() == 6 ||
+            squareGiven.getXC() == 1 && squareGiven.getYC() == 7 ||
+            squareGiven.getXC() == 6 && squareGiven.getYC() == 7){
+
+      squareScoreValue = 8;
+
+    } else if (((squareGiven.getXC() >= 2) && (squareGiven.getXC() <= 5)) && (squareGiven.getYC() == 0) ||
+            (squareGiven.getXC() == 0 && ((squareGiven.getYC() >= 2) && (squareGiven.getYC() <= 5))) ||
+            (squareGiven.getXC() == 7 && ((squareGiven.getYC() >= 2) && (squareGiven.getYC() <= 5))) ||
+            ((squareGiven.getXC() >= 2 && (squareGiven.getXC() <= 5)) && (squareGiven.getYC() == 7))){
+
+      squareScoreValue = 9;
+
+    }else if(squareGiven.getXC() == 1 && squareGiven.getYC() == 1 ||
+            squareGiven.getXC() == 6 && squareGiven.getYC() == 1 ||
+            squareGiven.getXC() == 1 && squareGiven.getYC() == 6 ||
+            squareGiven.getXC() == 6 && squareGiven.getYC() == 6){
+
+      squareScoreValue = 12;
+
+    } else if (((squareGiven.getXC() >= 2) && (squareGiven.getXC() <= 5)) && (squareGiven.getYC() == 1) ||
+            (squareGiven.getXC() == 1 && ((squareGiven.getYC() >= 2) && (squareGiven.getYC() <= 5))) ||
+            (squareGiven.getXC() == 6 && ((squareGiven.getYC() >= 2) && (squareGiven.getYC() <= 5))) ||
+            ((squareGiven.getXC() >= 2 && (squareGiven.getXC() <= 5)) && (squareGiven.getYC() == 6))){
+
+      squareScoreValue = 14;
+
+    } else if (((squareGiven.getXC() >= 2) && (squareGiven.getXC() <= 5)) && (squareGiven.getYC() == 2) ||
+            (squareGiven.getXC() == 2 && ((squareGiven.getYC() >= 2) && (squareGiven.getYC() <= 5))) ||
+            (squareGiven.getXC() == 5 && ((squareGiven.getYC() >= 2) && (squareGiven.getYC() <= 5))) ||
+            ((squareGiven.getXC() >= 2 && (squareGiven.getXC() <= 5)) && (squareGiven.getYC() == 5)) ||
+            ((squareGiven.getXC() >= 3) && (squareGiven.getXC() <= 4)) && squareGiven.getYC() == 3 ||
+            ((squareGiven.getXC() >= 3) && (squareGiven.getXC() <= 4) && squareGiven.getYC() == 4)){
+
+      squareScoreValue = 16;
+
+    }
+    return squareScoreValue;
+  }
 
   /*
     Here is the break-down of the possible AI possibilities.
@@ -21,8 +91,6 @@ public class  AIAgent{
                  based on the move that is made
                   --> To implement the functionality I will need to loop through the stack of movements and check if we
                   are taking a piece. If so, we make this movement.
-
-
    */
 
   /*
@@ -60,16 +128,25 @@ public class  AIAgent{
    */
 
   public Move nextBestMove(Stack possibilities){
-    Move selectedMove = new Move();
-    return selectedMove;
-  }
 
-  /*
-    This method is an extension of the method above. It tries to make the best move, while also trying to determine what
-    move the human player is trying to make.
-   */
-  public Move twoLevelsDeep(Stack possibilities){
-    Move selectedMove = new Move();
-    return selectedMove;
+    int bestScore = 0;
+    Move bestMove = null;
+
+    while(!possibilities.isEmpty()) {
+        Move tmpMove = (Move)possibilities.pop();
+
+        Square landing = tmpMove.getLanding();
+
+        int scoreOfPiece = pieceScoreCalculations(landing.getName());
+        int scoreOfSquare = squareScoreCalculations(landing);
+        int totalScore = 0;
+        totalScore = scoreOfPiece + scoreOfSquare;
+
+      if(totalScore > bestScore) {
+        bestScore = totalScore;
+        bestMove = tmpMove;
+      }
+    }
+    return bestMove;
   }
 }
